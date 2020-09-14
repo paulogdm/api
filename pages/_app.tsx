@@ -1,3 +1,4 @@
+import {DefaultSeo, NextSeo} from 'next-seo'
 import {AppPropsType} from 'next/dist/next-server/lib/utils'
 
 import App from '~/components/App'
@@ -5,6 +6,9 @@ import App from '~/components/App'
 function NextApp({Component, pageProps}: AppPropsType) {
   return (
     <App>
+      <DefaultSeo title="Snap API" description="Coming Soon!" />
+      {/* We don't want to index any page right now */}
+      <NextSeo noindex nofollow />
       <Component {...pageProps} />
     </App>
   )
