@@ -155,7 +155,7 @@ buck-out/
 .expo-shared/
 web-build/
 
-.env*.local
+.*
 
 # @generated: @expo/next-adapter@2.1.29
 /.expo/*
@@ -177,3 +177,8 @@ web-build/
 /.pnp
 .pnp.js
 # @end @expo/next-adapter
+
+
+# Allowed
+!.env
+!.gitignore
