@@ -5,20 +5,226 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --ignore-path=.gitignore",
+    "lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix --ignore-path=.gitignore"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "trailingComma": "es5",
+    "bracketSpacing": false,
+    "tabWidth": 2,
+    "jsxBracketSameLine": true,
+    "endOfLine": "auto"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@react-native-community",
+      "airbnb",
+      "airbnb/hooks",
+      "universe/native",
+      "universe/node",
+      "universe/web",
+      "universe/shared/typescript-analysis",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:react-native-a11y/all"
+    ],
+    "globals": {
+      "React": "writable"
+    },
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/prop-types": "off",
+      "jsx-a11y/accessible-emoji": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".d.ts",
+            ".tsx"
+          ]
+        }
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "^_",
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "^_",
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "react/jsx-props-no-spreading": "off",
+      "no-use-before-define": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "d.ts": "never",
+          "tsx": "never",
+          "js": "never",
+          "jsx": "never",
+          "mjs": "never"
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx",
+          "*.d.ts"
+        ],
+        "parserOptions": {
+          "project": "./tsconfig.json"
+        }
+      },
+      {
+        "files": [
+          "functions/**/*.ts",
+          "functions/**/*.tsx"
+        ],
+        "rules": {
+          "import/prefer-default-export": "off",
+          "import/default": "off"
+        }
+      },
+      {
+        "files": [
+          "next.config.js"
+        ],
+        "rules": {
+          "no-param-reassign": "off"
+        }
+      },
+      {
+        "files": [
+          "babel.config.js"
+        ],
+        "rules": {
+          "no-template-curly-in-string": "off"
+        }
+      },
+      {
+        "files": [
+          "tests/**/*.ts",
+          "tests/**/*.tsx",
+          "*.config.*"
+        ],
+        "rules": {
+          "import/no-extraneous-dependencies": "off"
+        }
+      }
+    ],
+    "settings": {
+      "import/parsers": {
+        "@typescript-eslint/parser": [
+          ".ts",
+          ".d.ts",
+          ".tsx"
+        ]
+      },
+      "import/resolver": {
+        "alias": {
+          "map": [
+            [
+              "app",
+              "./app"
+            ]
+          ],
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".d.ts",
+            ".tsx"
+          ]
+        },
+        "babel-module": {},
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".d.ts",
+            ".tsx"
+          ]
+        }
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{css,md,scss,js,jsx,ts,tsx}": "prettier --write",
+    "**/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
+    "@eva-design/eva": "^2.0.0",
+    "@ui-kitten/components": "^5.0.0",
+    "@ui-kitten/metro-config": "^5.0.0",
     "expo": "~38.0.8",
     "expo-status-bar": "^1.0.2",
+    "lodash": "^4.17.20",
+    "metro-config": "^0.63.0",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/lodash": "^4.14.161",
     "@types/react": "~16.9.41",
     "@types/react-native": "~0.62.13",
+    "@types/react-responsive": "^8.0.2",
+    "babel-jest": "~25.2.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "babel-plugin-wildcard": "^6.0.0",
+    "dotenv-flow": "^3.2.0",
+    "eslint": "7.7.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-universe": "^4.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-babel-module": "^5.1.2",
+    "eslint-import-resolver-typescript": "^2.2.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "4.1.0",
+    "eslint-plugin-react-native-a11y": "^2.0.2",
+    "husky": "^4.2.5",
+    "jest": "~25.2.6",
+    "lint-staged": "^10.2.11",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.0.2",
+    "react-test-renderer": "~16.11.0",
+    "sharp-cli": "^1.14.1",
     "typescript": "~3.9.5"
   },
   "private": true
