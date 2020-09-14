@@ -4,11 +4,13 @@ const {camelCase} = require('lodash')
 
 const publicEnvsKeys = Object.keys(process.env).filter((envName) => envName.match(/^PUBLIC/))
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = function babelConfig(api) {
-  api.cache(true)
+  api.cache(isProduction)
 
   return {
-    presets: ['babel-preset-expo'],
+    presets: ['@expo/next-adapter/babel'],
     plugins: [
       ['@babel/plugin-proposal-class-properties', {loose: true}],
       [
