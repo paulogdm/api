@@ -1,0 +1,6 @@
+- table:
+    schema: public
+    name: orders
+- table:
+    schema: public
+    name: users
