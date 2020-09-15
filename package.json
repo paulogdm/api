@@ -10,6 +10,7 @@
     "docker-compose": "dotenv-load docker-compose",
     "hasura": "dotenv-load hasura",
     "build": "run-s build:*",
+    "build:test": "node scripts/env FIREBASE_TOKEN",
     "build:functions": "cd functions && yarn deploy",
     "build:next": "next build",
     "hasura:start": "dotenv-load yarn docker-compose up",
