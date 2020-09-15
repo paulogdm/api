@@ -1,6 +1,202 @@
 - table:
     schema: public
     name: orders
+  configuration:
+    custom_root_fields:
+      insert: insertOrders
+      select_aggregate: ordersAggregate
+      insert_one: insertOrder
+      select_by_pk: ordersByPk
+      select: orders
+      delete: deleteOrders
+      update: updateOrders
+      delete_by_pk: deleteOrdersByPk
+      update_by_pk: updateOrdersByPk
+    custom_column_names: {}
+  object_relationships:
+  - name: user
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: users
+        column_mapping:
+          user_id: id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - user_id
+      - address
+      - city
+      - county
+      - zip
+      - apn
+      - owner
+      - status
+      - created_at
+      - updated_at
+      - vacant_land
+      - multiple_apns
+      - mobile_home
+      - order_method
+      - address_confirmed
+      - hazard_enabled
+      - tax_enabled
+      - environmental_enabled
+      - environmental_requested
+      - report_type
+      - price_in_cents
+      - customer_status
+      - check_number
+      - promo_code_id
+      - hazard_data
+      - tax_data
+      - femaflood_mapping
+      - williamson_mapping
+      - unit_number
+      - needs_spr
+      - process_job_id
+      - manual_tax_data
+      - silverlake_hazard_data
+      - manual_hazard_data
+      - channel_partner
+      - hazard_lookup_apn
+      - tax_lookup_apn
+      - slack_message
+      - tax_bill_enabled
+      - payment_method
+      - paid
+      - hazard_map_enabled
+      - layout_error_check_enabled
+      - signatures_enabled
+      - two_page_tax_breakdown_enabled
+      - partner_listing_provider
+      - partner_listing_brokerage
+      - lat
+      - lng
+      - orders_check_notified
+      - developer_id
+      - tract_id
+      - lot_id
+      - home_sale_price_in_cents
+      - manually_verified
+      - flood_certificate_enabled
+      - auto_delivery_enabled
+      - tax_bill_blank
+      - revenue_in_cents
+      - sales_rep_commission_id
+      - sales_rep_commission_amount_in_cents
+      - paid_at
+      - due_date
+      - channel_company
+      - local_tax_data
+      - local_tax_data_enabled
+      - sales_rep_id
+      - opendoor_report_type
+      - queue
+      - page_space
+      - ibuyer_report_type
+      - fire_severity_mapping
+      - fire_protection_district_mapping
+      - parent_order_id
+      - flood_certificate_provider
+      - massivecert_status
+      - massivecert_request_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      limit: 50
 - table:
     schema: public
     name: users
+  configuration:
+    custom_root_fields:
+      insert: insertUsers
+      select_aggregate: usersAggregate
+      insert_one: insertUser
+      select_by_pk: usersByPk
+      select: users
+      delete: deleteUsers
+      update: updateUsers
+      delete_by_pk: deleteUsersByPk
+      update_by_pk: updateUsersByPk
+    custom_column_names: {}
+  array_relationships:
+  - name: orders
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: orders
+        column_mapping:
+          id: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - role
+      - company
+      - cell_phone
+      - email
+      - encrypted_password
+      - reset_password_token
+      - reset_password_sent_at
+      - remember_created_at
+      - sign_in_count
+      - current_sign_in_at
+      - last_sign_in_at
+      - current_sign_in_ip
+      - last_sign_in_ip
+      - created_at
+      - updated_at
+      - admin
+      - office_phone
+      - messaging_sender_id
+      - invitation_token
+      - invitation_created_at
+      - invitation_sent_at
+      - invitation_accepted_at
+      - invitation_limit
+      - invited_by_id
+      - invited_by_type
+      - provider
+      - uid
+      - token
+      - refresh_token
+      - channel_partner
+      - optout
+      - channel_admin
+      - report_admin
+      - automatic_skyslope_reports
+      - developer_id
+      - developer_admin
+      - basic_residential_price_in_cents
+      - standard_residential_price_in_cents
+      - basic_commercial_price_in_cents
+      - standard_commercial_price_in_cents
+      - preferred_pricing_enabled
+      - avatar
+      - preferred_pricing_notification_delivered_at
+      - sales_rep_id
+      - sales_rep_admin
+      - zip_code
+      - billing_info_enabled
+      - report_mls_generation_enabled
+      - default_recipients_only
+      - default_report_type
+      - beta_enabled
+      - energy_rating_signature_page
+      - residential_earthquake_hazards_report
+      - government_booklets_signature_page
+      - deleted_at
+      - pipedrive_id
+      - developer_account_only
+      - company_id
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      limit: 50
