@@ -12,9 +12,10 @@
     "firebase:functions": "yarn build && dotenv-load firebase emulators:start --only functions",
     "firebase:shell": "firebase functions:shell",
     "deploy": "run-s build deploy:*",
-    "deploy:build": "cd .. && yarn env:build",
-    "deploy:envs": "firebase functions:config:unset env && firebase functions:config:set env=\"$(cat ../env.json)\" --token $(node ../scripts/env FIREBASE_TOKEN) --project $(node ../scripts/env FIREBASE_PROJECT)",
-    "deploy:functions": "firebase deploy --only functions --token $(node ../scripts/env FIREBASE_TOKEN) --project $(node ../scripts/env FIREBASE_PROJECT)",
+    "deploy:build-env": "cd .. && yarn env:build",
+    "deploy:firebase": "firebase use $(node ../scripts/env FIREBASE_PROJECT) --token $(node ../scripts/env FIREBASE_TOKEN)",
+    "deploy:envs": "firebase functions:config:unset env --token $(node ../scripts/env FIREBASE_TOKEN) && firebase functions:config:set env=\"$(cat env.json)\" --token $(node ../scripts/env FIREBASE_TOKEN)",
+    "deploy:functions": "firebase deploy --non-interactive --only functions --token $(node ../scripts/env FIREBASE_TOKEN)",
     "logs": "firebase functions:log"
   },
   "eslintConfig": {

@@ -1,13 +1,21 @@
-import dot from 'dot-object'
-import {config} from 'dotenv-flow'
 import writeJsonFile from 'write-json-file'
 
-const {parsed} = config()
+import env from '../lib/env'
+// import dot from 'dot-object'
+// import {config} from 'dotenv-flow'
 
-const envs = dot.object(parsed?.functions || ({} as any))
+// const {parsed} = config()
+
+// const envs = dot.object(parsed?.functions ?? ({} as any))
+
+const envs = {
+  hasura: {
+    url: env('FUNCTIONS_HASURA_URL'),
+  },
+}
 
 async function run() {
-  await writeJsonFile('./env.json', envs)
+  await writeJsonFile('./functions/env.json', envs)
 }
 
 run()
