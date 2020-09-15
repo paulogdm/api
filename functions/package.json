@@ -13,8 +13,8 @@
     "firebase:shell": "firebase functions:shell",
     "deploy": "run-s build deploy:*",
     "deploy:build": "cd .. && yarn env:build",
-    "deploy:envs": "firebase functions:config:unset env && firebase functions:config:set env=\"$(cat ../env.json)\"",
-    "deploy:functions": "dotenv-load firebase deploy --only functions --token $FIREBASE_TOKEN --project $FIREBASE_PROJECT",
+    "deploy:envs": "firebase functions:config:unset env && firebase functions:config:set env=\"$(cat ../env.json)\" --token $(node ../scripts/env FIREBASE_TOKEN) --project $(node ../scripts/env FIREBASE_PROJECT)",
+    "deploy:functions": "firebase deploy --only functions --token $(node ../scripts/env FIREBASE_TOKEN) --project $(node ../scripts/env FIREBASE_PROJECT)",
     "logs": "firebase functions:log"
   },
   "eslintConfig": {
