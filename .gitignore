@@ -178,6 +178,13 @@ web-build/
 .pnp.js
 # @end @expo/next-adapter
 
+# Functions
+functions/lib/
+env.json
+service-account.json
+functions/**/*.js
+functions/**/*.js.map
+
 
 # Allowed
 !.env
