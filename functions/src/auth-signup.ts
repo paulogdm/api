@@ -6,15 +6,15 @@ import {GraphQLClient} from 'graphql-request'
 import config from './config'
 import gql from './gql'
 
+const client = new GraphQLClient(config.hasura.url, {
+  headers: {
+    'content-type': 'application/json',
+    'x-hasura-admin-secret': config.hasura.adminSecret,
+  },
+})
+
 // On sign up.
 export const authSignup = functions.auth.user().onCreate(async (firebaseUser) => {
-  const client = new GraphQLClient(config.hasura.url, {
-    headers: {
-      'content-type': 'application/json',
-      'x-hasura-admin-secret': config.hasura.adminSecret,
-    },
-  })
-
   const {uid: firebaseId, email, displayName: name, emailVerified} = firebaseUser
 
   const query = gql`

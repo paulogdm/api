@@ -5,4 +5,4 @@ import admin from 'firebase-admin'
 admin.initializeApp()
 
 export {ping} from './ping'
-// export {authSignup} from './auth-signup'
+export {authSignup} from './auth-signup'

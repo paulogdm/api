@@ -1,10 +1,14 @@
 import * as functions from 'firebase-functions'
 
-const config = functions.config() || {}
+// eslint-disable-next-line import/no-mutable-exports
+let config = (functions.config() || {}).env ?? {}
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require, import/no-unresolved
-  config.env = require('../env.json')
+  config = require('../env.json')
 }
+
+// eslint-disable-next-line
+console.log(config)
 
 export default config

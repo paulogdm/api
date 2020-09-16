@@ -84,6 +84,10 @@ module.exports = function babelConfig(api) {
             transform: 'lodash/${member}',
             preventFullImport: true,
           },
+          'react-storefront': {
+            transform: 'react-storefront/${member}',
+            preventFullImport: true,
+          },
           '@fortawesome/free-solid-svg-icons': {
             transform: '@fortawesome/free-solid-svg-icons/${member}',
             preventFullImport: true,
