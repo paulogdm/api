@@ -96,5 +96,10 @@ module.exports = function babelConfig(api) {
         },
       ],
     ].filter(Boolean),
+    env: {
+      production: {
+        plugins: ['react-native-paper/babel'],
+      },
+    },
   }
 }

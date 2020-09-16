@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
+import {Headline} from 'react-native-paper'
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Snap API</Text>
+      <Headline>Snap API</Headline>
     </View>
   )
 }
@@ -14,8 +15,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontSize: 16,
   },
 })
