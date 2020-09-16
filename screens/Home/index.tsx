@@ -1,12 +1,11 @@
-import {Text, Layout} from '@ui-kitten/components'
 import React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 
 export default function HomeScreen() {
   return (
-    <Layout style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.text}>Snap API</Text>
-    </Layout>
+    </View>
   )
 }
 

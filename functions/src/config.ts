@@ -8,7 +8,4 @@ if (process.env.NODE_ENV !== 'production') {
   config = require('../env.json')
 }
 
-// eslint-disable-next-line
-console.log(config)
-
 export default config
